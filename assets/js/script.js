@@ -6,6 +6,7 @@ var questionEl = document.querySelector("#question-title");
 var choicesEl = document.querySelector("#choices");
 
 var currentQuestionIndex = 0;
+var timeLeft = 75;
 
 var questions = [
     {
@@ -23,8 +24,6 @@ var questions = [
 function quizStart() {
     landingPage.setAttribute("class", "hide");
     questionsPage.setAttribute("class", "show");
-
-    var timeLeft = 75;
 
     var timeInterval = setInterval(function () {
         if (timeLeft > 0) {
@@ -54,13 +53,20 @@ var questionFunction = function () {
 
             choiceButton.textContent = i + 1 + ". " + choice;
 
-            choiceButton.onclick = questionClick();
+            choiceButton.onclick = questionClick;
 
             questionEl.appendChild(choiceButton);
         });
 }
 
 var questionClick = function() {
+    if (this.value !== questions[currentQuestionIndex].answer) {
+        timeLeft -= 10;
+
+        if (timeLeft < 0) {
+            timeLeft = 0;
+        }
+    }
 
 }
 
