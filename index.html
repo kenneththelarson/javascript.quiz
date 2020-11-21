@@ -4,8 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JavaScript Quiz</title>
+    <link rel="stylesheet" href="./assets/css/styles.css" />
 </head>
 <body>
-    
+    <header class="header">
+        <div>
+            <a href="#high-scores">View Highscores</a>
+        </div>
+        <div id="timer">
+            Time: <span id="time">0</span>
+        </div>
+    </header>
+
+    <section id="title-section" class="show">
+        <div>
+            <h1>Coding Quiz Challenge</h1>
+        </div>
+        <div class="instructions">
+            <p>Try and answer the following JavaScript related questions within the time limit. Keep in mind that incorrect answers will
+                penalize your score/time by ten seconds!
+            </p>
+        </div>
+        <div>
+            <div>
+                <button id="startButton">Start Quiz</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="quiz-section" class="hide">
+        <div>
+            <h3 id="question-title"></h3>
+        </div>
+        <div id="choices"></div>
+        <div id="feedback" class="feedback"></div>
+    </section>
+
+    <section id="high-score-section" class="hide">
+        <div>
+            <div id="high-score">
+                <h2>All done!</h2>
+                <h3>Your final score is <span id="final-score">0</span></h3>
+                <label for="initials-area">Enter initials:</label>
+                <input type="text" name="initials-area" maxlength="4" id="initials">
+                <button id="submit-button" type="submit">Submit</button>
+            </div>
+        </div>
+    </section>
+
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>
