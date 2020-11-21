@@ -4,6 +4,7 @@ var landingPage = document.querySelector("#title-section");
 var questionsPage = document.querySelector("#quiz-section");
 var questionEl = document.querySelector("#question-title");
 var choicesEl = document.querySelector("#choices");
+var feedbackEl = document.querySelector("#feedback");
 
 var currentQuestionIndex = 0;
 var timeLeft = 75;
@@ -66,7 +67,23 @@ var questionClick = function() {
         if (timeLeft < 0) {
             timeLeft = 0;
         }
+        feedbackEl.textContent = "Wrong!"
     }
+    else {
+        feedbackEl.textContent = "Correct!"
+    }
+
+    currentQuestionIndex++;
+    
+    if (currentQuestionIndex === questions.length) {
+        quizEnd();
+    }
+    else {
+        questionFunction();
+    }
+}
+
+var quizEnd = function() {
 
 }
 
