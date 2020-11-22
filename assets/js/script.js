@@ -11,14 +11,29 @@ var timeLeft = 75;
 
 var questions = [
     {
-        title: "This will be a question at some point.",
-        choices: ["pants", "more pants", "a plethora of pants"],
-        answer: "a plethora of pants"
+        title: 'What is the correct way to write an array in JavaScript?',
+        choices: ['var fruit = 1 = ("apple", "banana", "orange")', 'var fruit("apple", "banana", "orange")', 'var fruit = "apple", "banana", "orange"', 'var fruit = ["apple", "banana", "orange"]'],
+        answer: 'var fruit = ["apple", "banana", "orange"]'
     },
     {
-        title: "Preston is my brother.",
-        choices: ["Yes", "No", "sometimes", "Never"],
-        answer: "Yes"
+        title: 'Which event occurs when the user clicks on an HTML element?',
+        choices: ['onMouseClick', 'onClick', 'click', 'mouseClick'],
+        answer: 'onClick'
+    },
+    {
+        title: 'How do you write "Hello World" in an alert box?',
+        choices: ['alert("Hello World");', 'alertBox("Hello World");', 'window.alert("Hello World");', 'Both 1 and 3'],
+        answer: 'Both 1 and 3'
+    },
+    {
+        title: 'How does a FOR loop start?',
+        choices: ['for (i = 0; i <= 5)', 'for i = 1 to 5', 'for (i = 0; i <= 5; i++)', 'All of the above'],
+        answer: 'for (i = 0; i <= 5; i++)'
+    },
+    {
+        title: 'How do you declare a JavaScript variable?',
+        choices: ['var userInput', 'v userInput', 'var = userInput', 'variable userInput'],
+        answer: 'var userInput'
     }
 ]
 
