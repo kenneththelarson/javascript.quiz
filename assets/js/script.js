@@ -8,6 +8,8 @@ var questionEl = document.querySelector("#question-title");
 var choicesEl = document.querySelector("#choices");
 var feedbackEl = document.querySelector("#feedback");
 var submitBtn = document.querySelector("#submit-button");
+var goBackBtn = document.querySelector("#go-back-button");
+var clearBtn = document.querySelector("#clear-high-scores");
 var scoreList = document.querySelector("#score-list");
 var scores = [];
 
@@ -171,5 +173,18 @@ var showHighScores = function() {
         scoreList.appendChild(scoreLi);
     }
 }
+
+goBackBtn.addEventListener("click", function(event) {
+    viewHighScores.setAttribute("class", "hide");
+    landingPage.setAttribute("class", "show");
+
+    currentQuestionIndex = 0;
+    timeLeft = 75;
+});
+
+clearBtn.addEventListener("click", function(event) {
+    event.preventDefault();
+    window.localStorage.removeItem("scores");
+})
 
 startBtn.onclick = quizStart;
