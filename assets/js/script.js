@@ -2,9 +2,14 @@ var timerEl = document.querySelector("#time");
 var startBtn = document.querySelector("#startButton");
 var landingPage = document.querySelector("#title-section");
 var questionsPage = document.querySelector("#quiz-section");
+var highScorePage = document.querySelector("#high-score-section");
+var viewHighScores = document.querySelector("#view-high-scores");
 var questionEl = document.querySelector("#question-title");
 var choicesEl = document.querySelector("#choices");
 var feedbackEl = document.querySelector("#feedback");
+var submitBtn = document.querySelector("#submit-button");
+var scoreList = document.querySelector("#score-list");
+var scores = [];
 
 var currentQuestionIndex = 0;
 var timeLeft = 75;
@@ -49,6 +54,10 @@ function quizStart() {
         else {
             timerEl.textContent = 'Finished!';
             clearInterval(timeInterval);
+            quizEnd();
+        }
+        if (currentQuestionIndex === questions.length) {
+            clearInterval(timeInterval);
         }
     }, 1000);
 
@@ -56,26 +65,26 @@ function quizStart() {
 }
 
 var questionFunction = function () {
-        var selectedQuestion = questions[currentQuestionIndex];
+    var selectedQuestion = questions[currentQuestionIndex];
 
-        questionEl.textContent = selectedQuestion.title;
+    questionEl.textContent = selectedQuestion.title;
 
-        choicesEl.innerHTML = "";
+    choicesEl.innerHTML = "";
 
-        selectedQuestion.choices.forEach(function (choice, i) {
-            var choiceButton = document.createElement("button");
-            choiceButton.setAttribute("class", "answer-options");
-            choiceButton.setAttribute("value", choice);
+    selectedQuestion.choices.forEach(function (choice, i) {
+        var choiceButton = document.createElement("button");
+        choiceButton.setAttribute("class", "answer-options");
+        choiceButton.setAttribute("value", choice);
 
-            choiceButton.textContent = i + 1 + ". " + choice;
+        choiceButton.textContent = i + 1 + ". " + choice;
 
-            choiceButton.onclick = questionClick;
+        choiceButton.onclick = questionClick;
 
-            questionEl.appendChild(choiceButton);
-        });
+        questionEl.appendChild(choiceButton);
+    });
 }
 
-var questionClick = function() {
+var questionClick = function () {
     if (this.value !== questions[currentQuestionIndex].answer) {
         timeLeft -= 10;
 
@@ -89,7 +98,7 @@ var questionClick = function() {
     }
 
     currentQuestionIndex++;
-    
+
     if (currentQuestionIndex === questions.length) {
         quizEnd();
     }
@@ -98,8 +107,69 @@ var questionClick = function() {
     }
 }
 
-var quizEnd = function() {
+var quizEnd = function () {
+    questionsPage.setAttribute("class", "hide");
+    highScorePage.setAttribute("class", "show");
 
+    var finalScore = document.querySelector("#final-score", timeLeft);
+    finalScore.textContent = timeLeft;
+    console.log(finalScore);
+}
+
+submitBtn.addEventListener("click", function(event) {
+    event.preventDefault();
+    var userInitials = document.querySelector("input[name='initials-area']").value;
+
+    if (!userInitials) {
+        alert("Please enter your initials!");
+        return false;
+    }
+    else {
+        alert("Score saved!");
+        var scoreData = {
+            name: userInitials,
+            score: timeLeft
+        };
+
+        loadScores();
+
+        scores.push(scoreData);
+        localStorage.setItem("scores", JSON.stringify(scores));
+
+        showHighScores();
+    }
+});
+
+var loadScores = function() {
+    var savedScores = localStorage.getItem("scores");
+    if (!savedScores) {
+        savedScores = [];
+    }
+    else {
+        savedScores = JSON.parse(savedScores);
+    }
+
+    scores = savedScores;
+}
+
+var showHighScores = function() {
+    landingPage.setAttribute("class", "hide");
+    questionsPage.setAttribute("class", "hide");
+    highScorePage.setAttribute("class", "hide");
+    viewHighScores.setAttribute("class", "show");
+
+    loadScores();
+
+    scores.sort(function(a, b) {
+        return b.score - a.score;
+    });
+
+    
+    for (var i = 0; i <scores.length; i++) {
+        var scoreLi = document.createElement("li");
+        scoreLi.textContent = scores[i].name + " - " + scores[i].score;
+        scoreList.appendChild(scoreLi);
+    }
 }
 
 startBtn.onclick = quizStart;
