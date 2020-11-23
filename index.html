@@ -9,7 +9,7 @@
 <body>
     <header class="header">
         <div>
-            <a href="#high-scores">View Highscores</a>
+            <button class="high-scores-btn" id="high-scores">View Highscores</button>
         </div>
         <div id="timer">
             Time: <span id="time">0</span>
@@ -27,27 +27,27 @@
         </div>
         <div>
             <div>
-                <button id="startButton">Start Quiz</button>
+                <button class="start-btn" id="startButton">Start Quiz</button>
             </div>
         </div>
     </section>
 
     <section id="quiz-section" class="hide">
         <div>
-            <h3 id="question-title"></h3>
+            <h2 id="question-title" class="question-title"></h2>
         </div>
-        <div id="choices"></div>
+        <div id="choices" class="choices"></div>
         <div id="feedback" class="feedback"></div>
     </section>
 
     <section id="high-score-section" class="hide">
-        <div>
+        <div class="score-style">
             <div id="high-score">
                 <h2>All done!</h2>
                 <h3>Your final score is <span id="final-score">0</span></h3>
                 <label for="initials-area">Enter initials:</label>
-                <input type="text" name="initials-area" maxlength="4" id="initials">
-                <button id="submit-button" type="submit">Submit</button>
+                <input type="text" name="initials-area" maxlength="3" id="initials">
+                <button class="btn" id="submit-button" type="submit">Submit</button>
             </div>
         </div>
     </section>

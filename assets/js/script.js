@@ -4,6 +4,7 @@ var landingPage = document.querySelector("#title-section");
 var questionsPage = document.querySelector("#quiz-section");
 var highScorePage = document.querySelector("#high-score-section");
 var viewHighScores = document.querySelector("#view-high-scores");
+var viewHighScoresBtn = document.querySelector("#high-scores");
 var questionEl = document.querySelector("#question-title");
 var choicesEl = document.querySelector("#choices");
 var feedbackEl = document.querySelector("#feedback");
@@ -75,7 +76,7 @@ var questionFunction = function () {
 
     selectedQuestion.choices.forEach(function (choice, i) {
         var choiceButton = document.createElement("button");
-        choiceButton.setAttribute("class", "answer-options");
+        choiceButton.setAttribute("class", "choices");
         choiceButton.setAttribute("value", choice);
 
         choiceButton.textContent = i + 1 + ". " + choice;
@@ -185,6 +186,11 @@ goBackBtn.addEventListener("click", function(event) {
 clearBtn.addEventListener("click", function(event) {
     event.preventDefault();
     window.localStorage.removeItem("scores");
-})
+    scoreList.remove();
+});
+
+viewHighScoresBtn.addEventListener("click", function() {
+    showHighScores();
+});
 
 startBtn.onclick = quizStart;
