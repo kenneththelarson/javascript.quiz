@@ -2,7 +2,7 @@
 
 ## Created By
 
-### Kenny Larson
+Kenny Larson
 
 ## Screenshot
 
